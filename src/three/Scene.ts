@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { ARButton } from "three/examples/jsm/webxr/ARButton";
 
 class Scene {
   constructor() {
@@ -22,8 +23,11 @@ class Scene {
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(width, height);
+    renderer.xr.enabled = true;
     renderer.setAnimationLoop(animation);
+
     document.body.appendChild(renderer.domElement);
+    document.body.appendChild(ARButton.createButton(renderer));
 
     function animation(time: number) {
       mesh.rotation.x = time / 2000;
